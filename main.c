@@ -7,7 +7,7 @@ int main(void){
         switch (getCmd(&cmd))
         {
             case 'a':
-                
+                printf("%d", mul(5, 5));
                 break;
             case 'c':
                 break;

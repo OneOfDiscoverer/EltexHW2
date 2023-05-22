@@ -1,8 +1,12 @@
 #ifndef _BASIC_H
 #define _BASIC_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "command.h"
+int add(int a, int b);
+
+int sub(int a, int b);
+
+int mul(int a, int b);
+
+int divide(int a, int b);
 
 #endif
