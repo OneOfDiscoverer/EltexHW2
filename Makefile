@@ -1,6 +1,6 @@
 BIN := main
-SOURCES := main.c
-HEADERS := main.h
+SOURCES := main.c command.c
+HEADERS := main.h command.h
 CFLAGS := -g
 LDFLAGS :=
 
