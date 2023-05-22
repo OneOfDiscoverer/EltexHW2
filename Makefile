@@ -1,6 +1,6 @@
 BIN := main
 SOURCES := main.c
-HEADERS := 
+HEADERS := main.h
 CFLAGS := -g
 LDFLAGS :=
 
