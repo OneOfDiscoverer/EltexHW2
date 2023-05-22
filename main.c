@@ -6,11 +6,16 @@ int main(void){
     while(1){
         switch (getCmd(&cmd))
         {
-        case 'q':
-            exit(0);
-            break;
-        default:
-            break;
+            case 'a':
+                
+                break;
+            case 'c':
+                break;
+            case 'q':
+                exit(0);
+                break;
+            default:
+                break;
         }
     }
     return 0;
