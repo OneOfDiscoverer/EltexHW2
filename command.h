@@ -12,6 +12,7 @@ struct command
     char param0[STR_LEN];
     char param1[STR_LEN];
     char param2[STR_LEN];
+    char param3[STR_LEN];
     //COMMAND_INS;  
 }typedef command;
 

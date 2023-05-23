@@ -9,6 +9,7 @@
 
 struct book 
 {
+    void* pointer;
     char name[256];
     char protorype[256];
 }typedef book;
