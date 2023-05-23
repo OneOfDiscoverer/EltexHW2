@@ -2,16 +2,20 @@
 
 int main(void){
     command cmd;
-    printf("helloworld\n");
     while(1){
         switch (getCmd(&cmd))
         {
             case 'a':
-                printf("%d", mul(5, 5));
+                void *plugin;
+                plugin = dlopen("./libs/libbasic.so", RTLD_LAZY);
+                char* (*func)();
+                *(void**)(&func) = dlsym(plugin, "init"); //attach init struct
+                printf("%s\n", func());
+                dlclose(plugin);
                 break;
             case 'c':
                 break;
-            case 'q':
+            case 'q': 
                 exit(0);
                 break;
             default:

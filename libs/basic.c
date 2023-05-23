@@ -1,5 +1,8 @@
 #include "basic.h"
 
+char* init(void){
+    return str;
+}
 int add(int a, int b){
     return a + b;
 }

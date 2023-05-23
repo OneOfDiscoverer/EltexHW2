@@ -5,5 +5,6 @@
 #include <stdlib.h>
 #include "command.h"
 #include "libs/basic.h"
+#include <dlfcn.h>
 
 #endif
