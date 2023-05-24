@@ -1,7 +1,7 @@
 #ifndef _BASIC_H
 #define _BASIC_H
 
-#define PROTOTYPES "int add (int,int);int sub (int,int);int mul (int,int);int divide (int,int);\n"
+#define PROTOTYPES "int add (int,int);\nint sub (int,int);\nint mul (int,int);\nint divide (int,int);\n"
 
 char* init(void);
 

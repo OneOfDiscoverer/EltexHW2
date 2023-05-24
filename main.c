@@ -2,22 +2,21 @@
 
 void attach(char* str, char* name){
     book tmp;
-    char* ptr;
-    ptr = (char*)&tmp;
-    while(ptr < (char*)&tmp + sizeof(tmp)){
-        *ptr++ = 0;
-    }
+    memset(&tmp, 0, sizeof(tmp));
     tmp.pointer = dlopen(str, RTLD_LAZY);
-    for(int i = 0; i < STR_LEN; i++){
+    memcpy(&tmp.name, name, STR_LEN);
+   /* for(int i = 0; i < STR_LEN; i++){
         tmp.name[i] = name[i];
         if(!name[i]){
             break;
         } 
-    }
+    }*/
     char* (*func)();
     *(void**)(&func) = dlsym(tmp.pointer, "init");
+    
     if(func){
-        char *symbol;
+        memcpy(&tmp.protorype, func(), STR_LEN);
+        /*char *symbol;
         symbol = func();
         for(int i = 0; i < STR_LEN; i++){
             if(symbol[i] == '\n')
@@ -26,7 +25,7 @@ void attach(char* str, char* name){
                 tmp.protorype[i] = '\n';
             else
                 tmp.protorype[i] = symbol[i];
-        }
+        }*/
         pushBack(&tmp);
     }
     else 
@@ -56,7 +55,7 @@ int main(void){
                     DIR *dir;
                     dir = opendir("./libs/");
                     struct dirent *de;
-                    while ( ( de = readdir(dir) ) ) {
+                    while (de = readdir(dir)) {
                         if (!strcmp((de->d_name) + strlen(de->d_name) - 3, ".so")){
                             char tmpstr[STR_LEN] = "./libs/";
                             int i = 0;

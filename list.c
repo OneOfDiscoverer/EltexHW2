@@ -26,13 +26,14 @@ void pushBack(void *ptr){
         cur_ptr->ptr = calloc(1, sizeof(list));
         cur_ptr = cur_ptr->ptr;
     }
-    char* ptr_book = (char*)&cur_ptr->bk;
+    memcpy(&cur_ptr->bk, ptr, sizeof(cur_ptr->bk));
+    /*char* ptr_book = (char*)&cur_ptr->bk;
     while(ptr_book < ((char*)&cur_ptr->bk + sizeof(cur_ptr->bk))){
         if(!*ptr_book) 
             *ptr_book = *(char*)ptr;
         ptr_book++;
         (char*)ptr++;
-    }
+    }*/
 }
 
 int remove_at(int num){ //for popfront set num 0
