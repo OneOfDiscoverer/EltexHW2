@@ -2,6 +2,8 @@
 
 list* getAt(int id){
     list* tmp = head;
+    if(!tmp) 
+        return 0;
     for(int i = 0; i < id; i++){
         if(tmp->ptr == 0) 
             return 0;

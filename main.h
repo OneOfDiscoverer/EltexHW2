@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <dirent.h>
 #include "command.h"
 #include "list.h"
-#include "libs/basic.h"
 #include <dlfcn.h>
 
 #endif

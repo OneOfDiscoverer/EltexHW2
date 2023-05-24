@@ -17,6 +17,6 @@ $(BIN):$(SOURCES)
 		$(CC) -fPIC -c $(SOURCES)
 		$(CC) -shared -o lib$(BIN).so $(BIN).o
 		rm -rf $(BIN).o
-
+		mv lib$(BIN).so ./..
 clean:
 		rm -rf $(BIN)

@@ -1,8 +1,6 @@
 #ifndef _LIST_H
 #define _LIST_H
 
-#define STR_LEN 16
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>

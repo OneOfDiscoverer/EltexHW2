@@ -2,7 +2,7 @@
 #define _COMMAND_H
 
 #ifndef STR_LEN
-#define STR_LEN 16
+#define STR_LEN 256
 #endif
 
 #include <stdio.h>

@@ -4,10 +4,6 @@ char* init(void){
     return PROTOTYPES;
 }
 
-char* name(void){
-    return NAME;
-}
-
 int add(int a, int b){
     return a + b;
 }
