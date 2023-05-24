@@ -4,20 +4,20 @@ char* init(void){
     return PROTOTYPES;
 }
 
-int add(int a, int b){
+double add(double a, double b){
     return a + b;
 }
 
-int sub(int a, int b){
+double sub(double a, double b){
     return a - b;
 }
 
-int mul(int a, int b){
+double mul(double a, double b){
     return a * b;
 }
 
-int divide(int a, int b){
+double divide(double a, double b){
     if(b == 0) 
-        return __INT32_MAX__;
+        return __DBL_MAX__;
     return a / b;
 }

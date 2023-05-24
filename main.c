@@ -11,7 +11,7 @@ void attach(char* str, char* name){
         pushBack(&tmp);
     }
     else 
-        printf("wrong plugin format in %s\n", name);
+        printf("plugin not exist \"init\" %s\n", name);
 }
 
 int main(void){
@@ -54,6 +54,7 @@ int main(void){
                 }
             case 'c':{
                     double (*foo)(double, double);
+                    foo = 0;
                     int i = 0;
                     while(1){
                         list* ptr;
@@ -67,7 +68,7 @@ int main(void){
                         printf("%.2f\n", foo(atof(cmd.param2), atof(cmd.param3)));
                     }
                     else 
-                        printf("wrong name\n");
+                        printf("func not found in active lib's\n");
                     break;
                 }
             case 'q':{

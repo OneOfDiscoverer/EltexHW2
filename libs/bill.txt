@@ -1,7 +1,11 @@
 for right attach plugin, they want exist symbol "init"
 
+all func's must realize one of two protorype:
+double name(double)
+double name(double, double)
+
 "init" must return string with protorype's in next format:
 
-[type] [name] ([type1],[type2],...);\n[type] [name] ([type1],[type2],...);\n...;\n
+[name] [num of arg's];\n[name] [num of arg's];\n...;\n
 
 

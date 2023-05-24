@@ -1,7 +1,7 @@
 #ifndef _SINUS_H
 #define _SINUS_H
 
-#define PROTOTYPES "double sinus (double);\n"
+#define PROTOTYPES "sinus 1;\n"
 
 #include <math.h>
 

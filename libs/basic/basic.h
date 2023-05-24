@@ -1,16 +1,16 @@
 #ifndef _BASIC_H
 #define _BASIC_H
 
-#define PROTOTYPES "int add (int,int);\nint sub (int,int);\nint mul (int,int);\nint divide (int,int);\n"
+#define PROTOTYPES "add 2;\nsub 2;\nmul 2;\ndivide 2;\n"
 
 char* init(void);
 
-int add(int a, int b);
+double add(double a, double b);
 
-int sub(int a, int b);
+double sub(double a, double b);
 
-int mul(int a, int b);
+double mul(double a, double b);
 
-int divide(int a, int b);
+double divide(double a, double b);
 
 #endif
