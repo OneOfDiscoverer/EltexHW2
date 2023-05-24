@@ -2,8 +2,13 @@
 
 void attach(char* str, char* name){
     book tmp;
+    char* ptr;
+    ptr = (char*)&tmp;
+    while(ptr < (char*)&tmp + sizeof(tmp)){
+        *ptr++ = 0;
+    }
     tmp.pointer = dlopen(str, RTLD_LAZY);
-    for(int i = 0; i < 256; i++){
+    for(int i = 0; i < STR_LEN; i++){
         tmp.name[i] = name[i];
         if(!name[i]){
             break;
@@ -12,13 +17,15 @@ void attach(char* str, char* name){
     char* (*func)();
     *(void**)(&func) = dlsym(tmp.pointer, "init");
     if(func){
-        for(int i = 0; i < 256; i++){
-            if(func()[i] == ';') 
-                tmp.protorype[i] = '\n';
-            else if(func()[i] == '\n' || !func()[i]) 
+        char *symbol;
+        symbol = func();
+        for(int i = 0; i < STR_LEN; i++){
+            if(symbol[i] == '\n')
                 break;
+            if(symbol[i] == ';') 
+                tmp.protorype[i] = '\n';
             else
-                tmp.protorype[i] = func()[i];
+                tmp.protorype[i] = symbol[i];
         }
         pushBack(&tmp);
     }
@@ -26,35 +33,61 @@ void attach(char* str, char* name){
         printf("wrong plugin format in %s\n", name);
 }
 
+/*void* search(char* name){
+    tmpPtr = getAt(0);
+    for(int b = 0; b < sizeof(tmpPtr->bk)/STR_LEN; b++){
+        int result = 0;
+        char* ptr = (char*)&tmpPtr->bk + STR_LEN*b;
+        for(int j = 0; j < STR_LEN; j++){
+            result += *(cmd.bk.firstName+j) - *(ptr+j);
+        }
+        if(!result)
+            printUser(&tmpPtr->bk, i);
+    }
+    tmpPtr = getAt(++i);
+}*/
+
 int main(void){
     command cmd;
-    DIR *dir;
-    dir = opendir("./libs/");
-    struct dirent *de;
-    while ( ( de = readdir(dir) ) ) {
-        if (!strcmp((de->d_name) + strlen(de->d_name) - 3, ".so")){
-            char tmpstr[256] = "./libs/";
-            strcat(tmpstr, de->d_name);
-            attach(tmpstr, de->d_name);
-        }
-    }         
-    closedir(dir);
     while(1){
         switch (getCmd(&cmd))
         {
-            case 'l':
-                {
-                    list* tmp;
+            case 'a':{
+                    DIR *dir;
+                    dir = opendir("./libs/");
+                    struct dirent *de;
+                    while ( ( de = readdir(dir) ) ) {
+                        if (!strcmp((de->d_name) + strlen(de->d_name) - 3, ".so")){
+                            char tmpstr[STR_LEN] = "./libs/";
+                            int i = 0;
+                            while(1){
+                                list* tmp = getAt(i++);
+                                if(!tmp) {
+                                    strcat(tmpstr, de->d_name);
+                                    attach(tmpstr, de->d_name);
+                                    break;
+                                }
+                                if(!strcmp(tmp->bk.name, de->d_name))
+                                    break;
+                            }
+                            
+                            
+                        }
+                    }         
+                    closedir(dir);
+                    break;
+                }
+            case 'l':{
                     int i = 0;
                     while(1){
-                        tmp = getAt(i++);
+                        list* tmp = getAt(i++);
                         if(!tmp) 
                             break;
                         printf("%s\n%s\n", tmp->bk.name, tmp->bk.protorype);
                     }
                     break;
                 }
-            case 'c':
+            case 'c':{
                 void* (*foo)();
                 foo = dlsym(getAt(1)->bk.pointer, cmd.param1);
                 if(foo) 
@@ -62,6 +95,7 @@ int main(void){
                 else 
                     printf("wrong name\n");
                 break;
+            }
             case 'q':{
                 list* tmp;
                 int i = 0;
@@ -70,6 +104,7 @@ int main(void){
                     if(!tmp) 
                         break;
                     dlclose(tmp->bk.pointer);
+                    remove_at(i);
                 }
                 exit(0);
                 break;

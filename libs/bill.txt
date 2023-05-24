@@ -2,7 +2,6 @@ for right attach plugin, they want exist symbol "init"
 
 "init" must return string with protorype's in next format:
 
-[type] [name] ([type1],[type2],...)
-[type] [name] ([type1],[type2],...)
+[type] [name] ([type1],[type2],...);[type] [name] ([type1],[type2],...);...;\n
 
 

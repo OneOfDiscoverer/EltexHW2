@@ -1,6 +1,10 @@
 #ifndef _LIST_H
 #define _LIST_H
 
+#ifndef STR_LEN
+#define STR_LEN 256
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -8,8 +12,8 @@
 struct book 
 {
     void* pointer;
-    char name[256];
-    char protorype[256];
+    char name[STR_LEN];
+    char protorype[STR_LEN];
 }typedef book;
 
 struct list
