@@ -61,7 +61,7 @@ int main(void){
                         ptr = getAt(i++);
                         if(!ptr)
                             break;
-                        if(foo = dlsym(ptr->bk.pointer, cmd.param1))
+                        if(foo = dlsym(ptr->bk.pointer, cmd.param1)) //bug. in libsinus.so can use mathlib symbol table. that is you can call printf or another one with prototype double (double,double) 
                             break;
                     }
                     if(foo) {
